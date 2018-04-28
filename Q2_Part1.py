@@ -76,7 +76,7 @@ class user:
             self.f += time
 
 
-table = daoru.daoru()
+table = daoru.daoru('1.xlsx')
 nrows = table.nrows  # 获取表的行数
 list = []  # 记录所有用户编号
 for i in range(nrows):  # 循环逐行 print(table.row_values(i)[0])
@@ -99,14 +99,6 @@ def match(x, y):
         xxx = [x.a, x.b, x.c, x.d, x.e, x.f, x.g]
         yyy = [y.a, y.b, y.c, y.d, y.e, y.f, y.g]
         return corrcoef(xxx, yyy)
-
-
-# result=[]
-# for i in list:
-#     result.append(list[list[i]])
-#     for j in range(len(list)):
-#         if abs(match(i,j))>0.8 and i!=j:
-#             result[len(result)-1]
 num = 1
 result = []
 result.append([user('xff', 11, 0)])
@@ -146,3 +138,6 @@ for each_list in result:
     print('#####' + str(num) + '#####')
     print(join_strings(each_list))
     num += 1
+
+def get_result():
+    return result
