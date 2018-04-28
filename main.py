@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import daoru
-import edit
 
 from math import sqrt
 
@@ -43,6 +42,7 @@ class user:
         self.e = 0
         self.f = 0
         self.g = 0
+        self.tab = 0
 
     def setter(self, name, menu, time):
         self.name = name
@@ -74,7 +74,7 @@ class user:
         elif menu == 9:
             self.b += time
             self.e += time
-        elif menu == 6:
+        elif menu == 10:
             self.f += time
 
 
@@ -90,8 +90,31 @@ for i in range(nrows):  # 循环逐行 print(table.row_values(i)[0])
         temp.setter(int(table.row_values(i)[0]), int(table.row_values(i)[1]),
                     int(table.row_values(i)[2]))
         list.append(temp)  # 不同的话就增加list用户
-print(len(list))
-for i in range(len(list)):
-    x = [list[0].a,list[0].b,list[0].c,list[0].d,list[0].e,list[0].f,list[0].g]
-    y = [list[i].a,list[i].b,list[i].c,list[i].d,list[i].e,list[i].f,list[i].g]
-    print (corrcoef(x, y))
+
+
+# print(len(list))
+
+def match(x, y):
+    for i in range(len(list)):
+        xxx = [x.a, x.b, x.c, x.d, x.e, x.f, x.g]
+        yyy = [y.a, y.b, y.c, y.d, y.e, y.f, y.g]
+        return corrcoef(xxx, yyy)
+
+
+# result=[]
+# for i in list:
+#     result.append(list[list[i]])
+#     for j in range(len(list)):
+#         if abs(match(i,j))>0.8 and i!=j:
+#             result[len(result)-1]
+num = 1
+for i in list:
+    for j in list:
+        if abs(match(i, j)) > 0.8:
+            if i != j and i.tab == 0 and j.tab == 0:
+                i.tab = num
+                j.tab = num
+                num += 1
+for i in list:
+    print(str(i.name))
+    print(str(i.tab))
