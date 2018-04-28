@@ -80,7 +80,7 @@ for each_list in data:
     elif maxx == result[num][5]:
         print('第' + str(num-1) + '组用户更偏爱' + '家庭影院' + '类型的节目')
     elif maxx == result[num][6]:
-        print('第' + str(num-1) + '组用户更偏爱' + '电视剧场' + '类型的节目')
+        print('第' + str(num) + '组用户更偏爱' + '电视剧场' + '类型的节目')
     print(result[num])
     num += 1
 
