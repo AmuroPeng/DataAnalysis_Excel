@@ -2,9 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import daoru
-
 from math import sqrt
-
 
 def multipl(a, b):
     sumofab = 0.0
@@ -89,6 +87,8 @@ for i in range(nrows):  # 循环逐行 print(table.row_values(i)[0])
         temp = user(None, None, None)
         temp.setter(int(table.row_values(i)[0]), int(table.row_values(i)[1]),
                     int(table.row_values(i)[2]))
+        # print(int(table.row_values(i)[0]), int(table.row_values(i)[1]),
+        #             int(table.row_values(i)[2]))
         list.append(temp)  # 不同的话就增加list用户
 
 
@@ -108,13 +108,41 @@ def match(x, y):
 #         if abs(match(i,j))>0.8 and i!=j:
 #             result[len(result)-1]
 num = 1
+result = []
+result.append([user('xff', 11, 0)])
 for i in list:
+    if i.tab != 0:
+        continue
+    i.tab = num
+    tempp = []
+    tempp.append(i)
     for j in list:
+        if i == j or j.tab != 0:
+            continue
         if abs(match(i, j)) > 0.8:
-            if i != j and i.tab == 0 and j.tab == 0:
-                i.tab = num
-                j.tab = num
-                num += 1
-for i in list:
-    print(str(i.name))
-    print(str(i.tab))
+            j.tab = num
+            tempp.append(j)
+    num += 1
+    result.append(tempp)
+
+
+# show.show(list)
+
+# for each_list in result:
+#     print(int(result.index(each_list)))
+#     for each_user in each_list:
+#         print(int(each_user.name))
+#     print('###################################')
+def join_strings(each_list):
+    results = ""
+    for each_user in each_list:
+        results += str(each_user.name)
+        results += ' '
+    return results
+
+
+num = 0
+for each_list in result:
+    print('#####' + str(num) + '#####')
+    print(join_strings(each_list))
+    num += 1
